@@ -9,12 +9,19 @@ import { HEROES } from '../mock-heroes';
 })
 export class HeroesComponent implements OnInit {
   selectedHero:Hero;
-  heroes=HEROES;
-  onSelect(heroes: Hero): void {
-    this.selectedHero = heroes
-    console.log(heroes);
+  oldselectedHero:Hero;
+  herojson=HEROES;
+
+  onSelect(hero11: Hero) :void{//hero11 คือค่าพารามิเตอร
+    this.oldselectedHero= this.selectedHero
+    this.selectedHero = hero11
+   
+
   }
+
   
+
+
 
   constructor() { }
 
