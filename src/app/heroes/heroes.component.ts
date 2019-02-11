@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Hero } from '../hero';
-import { HEROES } from '../mock-heroes';
+import { HeroService } from '../hero.service';
 
 @Component({
   selector: 'app-heroes',
@@ -8,24 +8,21 @@ import { HEROES } from '../mock-heroes';
   styleUrls: ['./heroes.component.scss']
 })
 export class HeroesComponent implements OnInit {
+
+  constructor(private heroService: HeroService) { }
+  heroes: Hero[];
   selectedHero:Hero;
-  oldselectedHero:Hero;
-  herojson=HEROES;
 
-  onSelect(hero11: Hero) :void{//hero11 คือค่าพารามิเตอร
-    this.oldselectedHero= this.selectedHero
-    this.selectedHero = hero11
-   
-
+  getHeroes(): void {
+    this.heroService.getHeroes()
+        .subscribe(heroes => this.heroes = heroes);
+  }
+  ngOnInit() {
+    this.getHeroes();
   }
 
-  
-
-
-
-  constructor() { }
-
-  ngOnInit() {
+  onSelect(hero):void{
+    this.selectedHero=hero
   }
 
 }
